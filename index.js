@@ -13,7 +13,13 @@ app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+})
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch(error => {
+    console.error('Error connecting to MongoDB:', error);
+  });
 
 // Create a mongoose schema and model
 const ContactSchema = new mongoose.Schema({
@@ -23,11 +29,9 @@ const ContactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model('Contact', ContactSchema);
 
-
-
 app.get('/', (req, res) => {
-    res.send("You visited My App which deployed in AWS EC2");
-})
+  res.send("You visited My App which deployed in AWS EC2");
+});
 
 // Define a route to display contacts
 app.get('/api/contact', async (req, res) => {
