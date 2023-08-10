@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config();
 
 // Create an Express app
 const app = express();
@@ -9,10 +8,9 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+// Connect to MongoDB locally
+mongoose.connect('mongodb://127.0.0.1:27017/deploy-app', {
+  useNewUrlParser: true
 })
   .then(() => {
     console.log('Connected to MongoDB');
