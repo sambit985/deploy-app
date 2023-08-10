@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // Set up middleware
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 
 // Connect to MongoDB locally
